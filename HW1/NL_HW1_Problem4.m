@@ -6,7 +6,7 @@ ISS (ZARYA)
 1 25544U 98067A   24259.04042691 -.00020782  00000+0 -36841-3 0  9993
 2 25544  51.6359 230.2949 0007613 354.9391  85.5828 15.49088255472489
 
-JUPITER 3 (ECHOSTAR 24) 
+JUPITER 3 (ECHOSTAR 24) : This is the heaviest commericial satellite 
 1 57479U 23108A   24257.28463005 -.00000150  00000+0  00000+0 0  9999
 2 57479   0.0225 150.4751 0001204  19.0167 190.5107  1.00269368  4212
 
@@ -23,6 +23,14 @@ STARLETTE
 2 07646  49.8222 111.7558 0205657 107.9496 254.3932 13.82332614505978
 %}
 
+%{
+To get position and velocity from orbital elements 
+    Mean motion --> Period of orbit (T) --> (a)
+    Eccentricity (e)
+    (a) & (e) --> (r) & (v)
+%}
+
+%% Plots
 % Eapen's Skeleton Code
 figure
 hold on
