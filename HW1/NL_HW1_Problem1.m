@@ -1,4 +1,4 @@
-% AERSP 450 HW 1
+% AERSP 450 HW 1 Problem 1
 % Made by Nicholas Luis
 
 clc; clear; close all;
