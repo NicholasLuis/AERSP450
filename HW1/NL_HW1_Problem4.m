@@ -107,6 +107,11 @@ hold off
 % 1 57479U 23108A   24257.28463005 -.00000150  00000+0  00000+0 0  9999
 % 2 57479   0.0225 150.4751 0001204  19.0167 190.5107  1.00269368  4212
 
+clear;
+
+MU = 3.986 * (10^5); % km^3 / s^2
+PI = 3.141592654;
+
 % Orbit Data from the TLE
 n = 1.00269368; % Revolutions (times 360 degrees) per day
 e = 0.0001204; % Eccentricity
@@ -203,6 +208,11 @@ hold off
 %% MOLNIYA 1-91            
 % 1 25485U 98054A   24258.47584262 -.00000047  00000+0  00000+0 0  9999
 % 2 25485  64.1500  21.4697 6821298 289.9022  12.2134  2.36441173198427
+
+clear;
+
+MU = 3.986 * (10^5); % km^3 / s^2
+PI = 3.141592654;
 
 % Orbit Data from the TLE
 n = 2.36441173; % Revolutions (times 360 degrees) per day
@@ -301,6 +311,11 @@ hold off
 % 1 57517U 23114A   24258.24908306  .00000071  00000+0  00000+0 0  9995
 % 2 57517  64.9566  94.2948 0008739 295.2308  64.7601  2.13103887  8606
 
+clear;
+
+MU = 3.986 * (10^5); % km^3 / s^2
+PI = 3.141592654;
+
 % Orbit Data from the TLE
 n = 2.13103887; % Revolutions (times 360 degrees) per day
 e = 0.0008739; % Eccentricity
@@ -391,12 +406,17 @@ grid on
 grid minor
 plot(longitude4,latitude4,'.','LineWidth',2)
 title('Semimajor axis vs True Anomaly for m1 = m2')
-title('Ground Path for MOLNIYA 1-91 ')
+title('Ground Path for COSMOS 2569 (703K)')
 hold off
 
 %% STARLETTE               
 % 1 07646U 75010A   24258.93756172 -.00000102  00000+0  34095-4 0  9995
 % 2 07646  49.8222 111.7558 0205657 107.9496 254.3932 13.82332614505978
+
+clear;
+
+MU = 3.986 * (10^5); % km^3 / s^2
+PI = 3.141592654;
 
 % Orbit Data from the TLE
 n = 13.82332614; % Revolutions (times 360 degrees) per day
@@ -488,7 +508,7 @@ grid on
 grid minor
 plot(longitude5,latitude5,'.','LineWidth',2)
 title('Semimajor axis vs True Anomaly for m1 = m2')
-title('Ground Path for MOLNIYA 1-91 ')
+title('Ground Path for STARLETTE')
 hold off
 
 
@@ -498,7 +518,9 @@ function Ef1 = mean2true(M, e) %Inputs a single number, Outputs a single number
 
     Ef0 = M; % Initial guess
     Ef1 = M + 1; % Ensures that loop exit condition is not prematurely called
-    while (abs(Ef1-Ef0) > 0.00001) % Loops until the difference is negligible
+    safety = 0;
+    while ((abs(Ef1-Ef0) > 0.001) && (safety < 5000)) % Loops until the difference is negligible
+        safety = safety + 1;
         Ef0 = Ef1;
         f = Ef0 - e*sin(Ef0) - M;
         f_prime = 1 - e*sin(Ef0);
