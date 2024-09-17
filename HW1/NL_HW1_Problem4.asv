@@ -75,7 +75,7 @@ gamma0 = sum(ERA_degrees);
 
 % Rotating position vectors to get it in ECEF frame (at every point in time)
 for iter = 1 : length(t) % Start at t = 2 because we already have initial conditions
-    g = gamma0 - (15/3600)*t(iter); 
+    g = gamma0 + (15/3600)*t(iter); 
     R3g = [cosd(g), -sind(g), 0;
            sind(g),  cosd(g), 0;
            0      ,  0      , 1 ]; % Rotation around axis 3 by g (GMST angle) degrees
@@ -107,14 +107,18 @@ hold off
 % 1 57479U 23108A   24257.28463005 -.00000150  00000+0  00000+0 0  9999
 % 2 57479   0.0225 150.4751 0001204  19.0167 190.5107  1.00269368  4212
 
+% TJS-11                  
+% 1 59020U 24037A   24260.76718314 -.00000379  00000+0  00000+0 0  9991
+% 2 59020   5.1756 321.6608 0005832 245.1776 185.7546  1.00269224  2204
+
 clear;
 
 MU = 3.986 * (10^5); % km^3 / s^2
 PI = 3.141592654;
 
 % Orbit Data from the TLE
-n = 1.00269368; % Revolutions (times 360 degrees) per day
-e = 0.0001204; % Eccentricity
+n = 1.00269224; % Revolutions (times 360 degrees) per day
+e = 0005832; % Eccentricity
 M0 = 190.5107; % Initial Mean Anomaly
 w = 19.0167; % Argument of perigee
 i = 0.0225; % Inclination
@@ -176,7 +180,7 @@ gamma0 = sum(ERA_degrees);
 
 % Rotating position vectors to get it in ECEF frame (at every point in time)
 for iter = 1 : length(t) % Start at t = 2 because we already have initial conditions
-    g = gamma0 - (15/3600)*t(iter); 
+    g = gamma0 + (15/3600)*t(iter); 
     R3g = [cosd(g), -sind(g), 0;
            sind(g),  cosd(g), 0;
            0      ,  0      , 1 ]; % Rotation around axis 3 by g (GMST angle) degrees
@@ -279,7 +283,7 @@ gamma0 = sum(ERA_degrees);
 
 % Rotating position vectors to get it in ECEF frame (at every point in time)
 for iter = 1 : length(t) % Start at t = 2 because we already have initial conditions
-    g = gamma0 - (15/3600)*t(iter); 
+    g = gamma0 + (15/3600)*t(iter); 
     R3g = [cosd(g), -sind(g), 0;
            sind(g),  cosd(g), 0;
            0      ,  0      , 1 ]; % Rotation around axis 3 by g (GMST angle) degrees
@@ -381,7 +385,7 @@ gamma0 = sum(ERA_degrees);
 
 % Rotating position vectors to get it in ECEF frame (at every point in time)
 for iter = 1 : length(t) % Start at t = 2 because we already have initial conditions
-    g = gamma0 - (15/3600)*t(iter); 
+    g = gamma0 + (15/3600)*t(iter); 
     R3g = [cosd(g), -sind(g), 0;
            sind(g),  cosd(g), 0;
            0      ,  0      , 1 ]; % Rotation around axis 3 by g (GMST angle) degrees
@@ -483,7 +487,7 @@ gamma0 = sum(ERA_degrees);
 
 % Rotating position vectors to get it in ECEF frame (at every point in time)
 for iter = 1 : length(t) % Start at t = 2 because we already have initial conditions
-    g = gamma0 - (15/3600)*t(iter); 
+    g = gamma0 + (15/3600)*t(iter); 
     R3g = [cosd(g), -sind(g), 0;
            sind(g),  cosd(g), 0;
            0      ,  0      , 1 ]; % Rotation around axis 3 by g (GMST angle) degrees
