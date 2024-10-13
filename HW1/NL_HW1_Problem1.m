@@ -1,5 +1,5 @@
 % AERSP 450 HW 1 Problem 1
-% Made by Nicholas Luis
+% Made by Nicholas Luis, PSU ID: 930841391
 
 clc; clear; close all;
 

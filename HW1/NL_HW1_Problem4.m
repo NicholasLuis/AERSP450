@@ -1,10 +1,14 @@
 % AERSP 450 HW 1 Problem 4
-% Made by Nicholas Luis
+% Made by Nicholas Luis, PSU ID: 930841391
 
 close all;
 %% ISS (ZARYA)             
 % 1 25544U 98067A   24259.04042691 -.00020782  00000+0 -36841-3 0  9993
 % 2 25544  51.6359 230.2949 0007613 354.9391  85.5828 15.49088255472489
+
+%GOES 19                 
+%1 60133U 24119A   24282.45484584 -.00000173  00000+0  00000+0 0  9990
+%2 60133   0.0409  37.6777 0001304  61.8794 352.2976  1.00271032   783
 
 clear; clc; 
 
@@ -12,13 +16,13 @@ MU = 3.986 * (10^5); % km^3 / s^2
 PI = 3.141592654;
 
 % Orbit Data from the TLE
-n = 15.49088255; % Revolutions (times 360 degrees) per day
-e = 0.0007613; % Eccentricity
-M0 = 85.5828; % Initial Mean Anomaly
-w = 354.9391; % Argument of perigee
-i = 51.6359; % Inclination
-W = 230.2949; % Right ascension of ascending node
-ERA = [0, 36, 10]; % GMST based on the provided website using epoch data
+n = 1.00271032; % Revolutions per day
+e = 0.0001304; % Eccentricity
+M0 = 352.2976; % Initial Mean Anomaly
+w = 61.8794; % Argument of perigee
+i = 0.0409; % Inclination
+W = 37.6777; % Right ascension of ascending node
+ERA = [12, 05, 15.2834]; % GMST based on the provided website using epoch data
 
 T = 86400/n; % Period of orbit (in seconds per 1 revolution)
 a = ((T/(2*PI))^2 * MU)^(1/3);
@@ -100,6 +104,8 @@ contour(-180:179,-90:89,topoplot,[0,0],'black');
 grid on
 grid minor
 plot(longitude,latitude,'.','LineWidth',2)
+xlabel("longtitude (degrees)")
+ylabel("latitude (degrees)")
 title('Ground Path for ISS (ZARYA)')
 hold off
 
@@ -202,7 +208,8 @@ grid on
 grid minor
 plot(longitude2,latitude2,'.','LineWidth',2)
 %plot(longitude2(1:10),latitude2(1:10),'.','LineWidth',2)
-title('Semimajor axis vs True Anomaly for m1 = m2')
+xlabel("longtitude (degrees)")
+ylabel("latitude (degrees)")
 title('Ground Path for JUPITER 3 (ECHOSTAR 24)')
 hold off
 
@@ -304,7 +311,8 @@ contour(-180:179,-90:89,topoplot,[0,0],'black');
 grid on
 grid minor
 plot(longitude3,latitude3,'.','LineWidth',2)
-title('Semimajor axis vs True Anomaly for m1 = m2')
+xlabel("longtitude (degrees)")
+ylabel("latitude (degrees)")
 title('Ground Path for MOLNIYA 1-91 ')
 hold off
 
@@ -406,7 +414,8 @@ contour(-180:179,-90:89,topoplot,[0,0],'black');
 grid on
 grid minor
 plot(longitude4,latitude4,'.','LineWidth',2)
-title('Semimajor axis vs True Anomaly for m1 = m2')
+xlabel("longtitude (degrees)")
+ylabel("latitude (degrees)")
 title('Ground Path for COSMOS 2569 (703K)')
 hold off
 
@@ -508,7 +517,8 @@ contour(-180:179,-90:89,topoplot,[0,0],'black');
 grid on
 grid minor
 plot(longitude5,latitude5,'.','LineWidth',2)
-title('Semimajor axis vs True Anomaly for m1 = m2')
+xlabel("longtitude (degrees)")
+ylabel("latitude (degrees)")
 title('Ground Path for STARLETTE')
 hold off
 
@@ -524,7 +534,7 @@ function Ef1 = mean2true(M, e) %Inputs a single number, Outputs a single number
         safety = safety + 1;
         Ef0 = Ef1;
         f = Ef0 - e*sin(Ef0) - M;
-        f_prime = 1 - e*sin(Ef0);
+        f_prime = 1 - e*cos(Ef0);
         Ef1 = Ef0 - (f / f_prime);
     end
 end
