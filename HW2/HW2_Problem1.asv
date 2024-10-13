@@ -52,16 +52,20 @@ yvec2 = r2vec.*sind(fvec-30); % List of the y coordinates of the arrival orbit
 
 figure(1)
 hold on
-plot(xvec1, yvec1, LineWidth=2)
-plot(xvec2, yvec2, LineWidth=2)
-plot(xvecT(1:1801), yvecT(1:1801), ':', LineWidth=2) % Only plotting half of the transfer orbit
+plot(xvec1, yvec1)
+plot(xvec2, yvec2)
+plot(xvecT(1:1801), yvecT(1:1801)) % Only plotting half of the transfer orbit
 title('Two-Impulse Minimum Energy Orbit Transfer')
 xlabel("x (km)")
 ylabel("y (km)")
-legend('Departure Orbit', 'Arrival Orbit', 'Transfer Orbit')
+legend('Departure Orbit', '')
 hold off
+% Plotting orbit 1
 
-exportgraphics(gca,"myplot.jpg");
+% Plotting orbit 2
+
+% Plotting transfer orbit (only plot up to f = 180 degrees (index 1801)
+
 %% Functions
 function radius = getRadius(a_input, e_input, f_input)
     p = a_input * (1 - (e_input^2));
