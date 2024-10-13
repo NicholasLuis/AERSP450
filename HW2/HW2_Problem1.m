@@ -61,7 +61,7 @@ ylabel("y (km)")
 legend('Departure Orbit', 'Arrival Orbit', 'Transfer Orbit')
 hold off
 
-exportgraphics(gca,"myplot.jpg");
+exportgraphics(gca,"HW2_Problem1_Figure.jpg");
 %% Functions
 function radius = getRadius(a_input, e_input, f_input)
     p = a_input * (1 - (e_input^2));
