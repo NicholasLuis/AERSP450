@@ -529,9 +529,7 @@ function Ef1 = mean2true(M, e) %Inputs a single number, Outputs a single number
 
     Ef0 = M; % Initial guess
     Ef1 = M + 1; % Ensures that loop exit condition is not prematurely called
-    safety = 0;
-    while ((abs(Ef1-Ef0) > 0.001) && (safety < 5000)) % Loops until the difference is negligible
-        safety = safety + 1;
+    while (abs(Ef1-Ef0) > 0.001) % Loops until the difference is negligible
         Ef0 = Ef1;
         f = Ef0 - e*sin(Ef0) - M;
         f_prime = 1 - e*cos(Ef0);
