@@ -47,8 +47,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r3);
+df = getF(e, r5) - getF(e, r4);
 
 fprintf("Orbit elements for the 2-4-6 data set: \n")
 orbitElements = getOrbitalElements(r4, v246);
@@ -59,8 +59,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r2)
+df = getF(e, r6) - getF(e, r4)
 
 fprintf("Orbit elements for the 1-4-7 data set: \n")
 orbitElements = getOrbitalElements(r4, v147);
@@ -71,8 +71,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r1)
+df = getF(e, r7) - getF(e, r4)
 
 %% Case 1 - Corrupted Observations
 clear;
@@ -116,8 +116,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r3);
+df = getF(e, r5) - getF(e, r4);
 
 fprintf("Orbit elements for the 2-4-6 data set: \n")
 orbitElements = getOrbitalElements(r4, v246);
@@ -128,8 +128,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r2)
+df = getF(e, r6) - getF(e, r4)
 
 fprintf("Orbit elements for the 1-4-7 data set: \n")
 orbitElements = getOrbitalElements(r4, v147);
@@ -140,8 +140,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r1)
+df = getF(e, r7) - getF(e, r4)
 
 %% Case 2 - Perfect Observations
 fprintf("\n\n\n-------BEGINNING OF CASE 2-------\n\n")
@@ -186,8 +186,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r3);
+df = getF(e, r5) - getF(e, r4);
 
 fprintf("Orbit elements for the 2-4-6 data set: \n")
 orbitElements = getOrbitalElements(r4, v246);
@@ -198,8 +198,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r2)
+df = getF(e, r6) - getF(e, r4)
 
 fprintf("Orbit elements for the 1-4-7 data set: \n")
 orbitElements = getOrbitalElements(r4, v147);
@@ -210,8 +210,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r1)
+df = getF(e, r7) - getF(e, r4)
 
 %% Case 2 - Corrupted Observations
 clear;
@@ -255,8 +255,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r3);
+df = getF(e, r5) - getF(e, r4);
 
 fprintf("Orbit elements for the 2-4-6 data set: \n")
 orbitElements = getOrbitalElements(r4, v246);
@@ -267,8 +267,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r2)
+df = getF(e, r6) - getF(e, r4)
 
 fprintf("Orbit elements for the 1-4-7 data set: \n")
 orbitElements = getOrbitalElements(r4, v147);
@@ -279,8 +279,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r1)
+df = getF(e, r7) - getF(e, r4)
 
 %% Case 3 - Perfect Observations
 fprintf("\n\n\n-------BEGINNING OF CASE 3-------\n\n")
@@ -325,8 +325,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r3);
+df = getF(e, r5) - getF(e, r4);
 
 fprintf("Orbit elements for the 2-4-6 data set: \n")
 orbitElements = getOrbitalElements(r4, v246);
@@ -337,8 +337,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r2)
+df = getF(e, r6) - getF(e, r4)
 
 fprintf("Orbit elements for the 1-4-7 data set: \n")
 orbitElements = getOrbitalElements(r4, v147);
@@ -349,8 +349,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r1)
+df = getF(e, r7) - getF(e, r4)
 
 %% Case 3 - Corrupted Observations
 load('Case3.mat')
@@ -393,8 +393,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r3);
+df = getF(e, r5) - getF(e, r4);
 
 fprintf("Orbit elements for the 2-4-6 data set: \n")
 orbitElements = getOrbitalElements(r4, v246);
@@ -405,8 +405,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r2)
+df = getF(e, r6) - getF(e, r4)
 
 fprintf("Orbit elements for the 1-4-7 data set: \n")
 orbitElements = getOrbitalElements(r4, v147);
@@ -417,8 +417,8 @@ i = orbitElements(1, 3);
 Omega = orbitElements(1, 4);
 omega = orbitElements(1,5);
 
-df = getF(e, r4) - getF(e, r3)
-df = getF(e, r5) - getF(e, r4)
+df = getF(e, r4) - getF(e, r1)
+df = getF(e, r7) - getF(e, r4)
 
 %% Functions
 function trueAnomaly = getF(E, R)
