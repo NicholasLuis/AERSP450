@@ -1,8 +1,11 @@
+% This is the code for Aersp 450, HW 4, Question I
+% Made by Nicholas Luis (PSU ID 930841391)
+
 clc
 clear
 
 %% Provided Skeleton Code
-T = readtable(Filename);
+T = readtable('SensorData.csv');
 wx = T.wx;
 wy = T.wy;
 wz = T.wz;
@@ -26,25 +29,85 @@ C_BN = [cosd(theta2)*cosd(theta1), cosd(theta2)*sind(theta1), -sind(theta2);
         sind(theta3)*sind(theta2)*cosd(theta1)-cosd(theta3)*sind(theta1), sind(theta3)*sind(theta2)*sind(theta1)+cosd(theta3)*cosd(theta1), sind(theta3)*cosd(theta2);
         cosd(theta3)*sind(theta2)*cosd(theta1)+sind(theta3)*sind(theta1), cosd(theta3)*sind(theta2)*sind(theta1)-sind(theta3)*cosd(theta1), cosd(theta3)*cosd(theta2);
        ]
+DCMcheck(C_BN);
+
+% Quaternion based on the DCM matrix using Sheppard Algo
+Beta = SheppardAlgo(C_BN)
+
+% Plotting the angular velocities as a function of time
+figure(1)
+hold on
+plot(t, wx, LineWidth=2)
+plot(t, wy, LineWidth=2)
+plot(t, wz, LineWidth=2) % Only plotting half of the transfer orbit
+title('Earth-Mars Transfer')
+xlabel("Time (s)")
+ylabel("Angular Velocity (deg / s)")
+legend('wx', 'wy', 'wz')
+hold off
+exportgraphics(gca,"HW4_Problem1_AngVeloPlots.jpg");
 
 %% Functions
 function isDCM = DCMcheck(A)
 % This function checks if a matrix is a DCM
 isDCM = true;
 
-if (norm(A(1,:))~=1 || norm(A(2,:))~=1 || norm(A(3,:))~=1 ...
-    || norm(A(:,1))~=1 || norm(A(:,1))~=1 || norm(A(:,1))~=1 )
-    % Checks if any of the rows or columns are not equal to 1
-    isDCM = false;
-
-else if ((A*A') ~= eye(3))
-    
+% Checks if the rows and columns are unit vectors
+for i = 1:3
+    if (round(norm(A(i,:)), 10) ~= 1)
+        isDCM = false;
+        fprintf("The DCM is not valid!");
+        return;
+    end
+    if (round(norm(A(:,i)), 10) ~= 1)
+        isDCM = false;
+        fprintf("The DCM is not valid!");
+        return;
+    end
 end
-% Checking if rows are unit vectors
-A = A';
-norm(A(1,:));
-norm(A(2,:));
-norm(A(3,:));
+% Checks if the DCM is orthonormal
+if (round(A*A',10) ~= eye(3))
+    isDCM = false;
+    fprintf("The DCM is not valid!");
+    return;
+end
+end
 
+
+function BetaVec = SheppardAlgo(C)
+% This funciton inputs some matrix C and does Sheppard's algorithm to
+% compute the quaternion
+
+% Equation 3.95
+B0 = sqrt(0.25*(1+trace(C)));
+B1 = sqrt(0.25*(1+2*C(1,1)-trace(C)));
+B2 = sqrt(0.25*(1+2*C(2,2)-trace(C)));
+B3 = sqrt(0.25*(1+2*C(3,3)-trace(C)));
+BetaVec = [B0; B1; B2; B3];
+
+biggestB = max(BetaVec);
+
+% Equation 3.96
+if (B0 == biggestB)
+    BetaVec(1) = 0.25*(C(2,3)-C(3,2))/B0;
+    BetaVec(2) = 0.25*(C(3,1)-C(1,3))/B0;
+    BetaVec(3) = 0.25*(C(1,2)-C(2,1))/B0;
+    return;
+elseif (B1 == biggestB)
+    BetaVec(0) = 0.25*(C(2,3)-C(3,2))/B1;
+    BetaVec(2) = 0.25*(C(1,2)+C(2,1))/B1;
+    BetaVec(3) = 0.25*(C(3,1)+C(1,3))/B1;
+    return;
+elseif (B2 == biggestB)
+    BetaVec(0) = 0.25*(C(3,1)-C(1,3))/B2;
+    BetaVec(1) = 0.25*(C(1,2)+C(2,1))/B2;
+    BetaVec(3) = 0.25*(C(2,3)+C(3,2))/B2;
+    return;
+else
+    BetaVec(0) = 0.25*(C(1,2)-C(2,1))/B3;
+    BetaVec(1) = 0.25*(C(3,1)+C(1,3))/B3;
+    BetaVec(2) = 0.25*(C(2,3)+C(3,2))/B3;
+    return;
+end
 
 end
