@@ -40,7 +40,6 @@ hold on
 plot(t, wx, LineWidth=2)
 plot(t, wy, LineWidth=2)
 plot(t, wz, LineWidth=2) % Only plotting half of the transfer orbit
-title('Earth-Mars Transfer')
 xlabel("Time (s)")
 ylabel("Angular Velocity (deg / s)")
 legend('wx', 'wy', 'wz')
