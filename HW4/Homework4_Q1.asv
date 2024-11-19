@@ -21,7 +21,7 @@ t = seconds(timeDifferences);
 
 % Given euler angle rotations
 theta1 = 30; % yaw
-theta2 = 70; % pitch
+theta2 = 30; % pitch
 theta3 = 20; % theta3l
 
 % DCM rotation based on a 3-2-1 rotation
