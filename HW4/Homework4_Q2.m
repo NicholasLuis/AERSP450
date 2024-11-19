@@ -78,28 +78,50 @@ hold off
 exportgraphics(gca,"HW4_Problem2_ErrorPlot.jpg");
 
 %% Yaw-Pitch-Roll vs Time
-% Getting Euler Angle values
-angleHistory = zeros(length(t)-1, 3);
+% Getting Euler Angle values from the DCMs
+numericAngleHistory = zeros(length(t)-1, 3);
+analyticAngleHistory = zeros(length(t)-1, 3);
+
 for i = 1:length(t)-1
-    theta1 = theta1 + (wz(i)*( t(i+1)-t(i)));
-    theta2 = theta2 + (wy(i)*( t(i+1)-t(i)));
-    theta3 = theta3 + (wx(i)*( t(i+1)-t(i)));
+    % Numerical Data
+    C_numeric = row2mat(C_hist_numerical(i,:));
+    theta1 = atan2(C_numeric(2,1), C_numeric(1,1)); % Yaw
+    theta2 = asin(C_numeric(3,1)); % Pitch
+    theta3 = atan2(C_numeric(3,2), C_numeric(3,3)); % Roll
+    numericAngleHistory(i,:) = [theta1, theta2, theta3]; % Saves yaw, pitch, and roll at this time step
     
-    angleHistory(i,:) = [theta1, theta2, theta3]; % Saves yaw, pitch, and roll at this time step
+    % Analytical Data
+    C_analytic = row2mat(C_hist_analytic(i,:));
+    theta1 = atan2(C_analytic(2,1), C_analytic(1,1)); % Yaw
+    theta2 = asin(C_analytic(3,1)); % Pitch
+    theta3 = atan2(C_analytic(3,2), C_analytic(3,3)); % Roll
+    analyticAngleHistory(i,:) = [theta1, theta2, theta3]; % Saves yaw, pitch, and roll at this time step
 end
 
 % Plotting values
 figure(2)
 hold on
-plot(t(1:length(t)-1), angleHistory(:,1), LineWidth=2)
-plot(t(1:length(t)-1), angleHistory(:,2), LineWidth=2)
-plot(t(1:length(t)-1), angleHistory(:,3), LineWidth=2)
-legend('Yaw', 'Pitch', 'Roll')
-title('Evolution of Yaw, Pitch, and Roll over Time' )
+plot(t(1:length(t)-1), numericAngleHistory(:,1), LineWidth=2)
+plot(t(1:length(t)-1), numericAngleHistory(:,2), LineWidth=2)
+plot(t(1:length(t)-1), numericAngleHistory(:,3), LineWidth=2)
+legend('Yaw ', 'Pitch', 'Roll')
+title('Evolution of Yaw, Pitch, and Roll over Time (From Numerical DCM)' )
 xlabel("Time (s)")
-ylabel("Angle (degrees)")
+ylabel("Angle (Radians)")
 hold off
 exportgraphics(gca,"HW4_Problem2_EulerAnglesPlot.jpg");
+
+figure(3)
+hold on
+plot(t(1:length(t)-1), analyticAngleHistory(:,1), LineWidth=2)
+plot(t(1:length(t)-1), analyticAngleHistory(:,2), LineWidth=2)
+plot(t(1:length(t)-1), analyticAngleHistory(:,3), LineWidth=2)
+legend('Yaw ', 'Pitch', 'Roll')
+title('Evolution of Yaw, Pitch, and Roll over Time (From Analytical DCM)' )
+xlabel("Time (s)")
+ylabel("Angle (Radians)")
+hold off
+exportgraphics(gca,"HW4_Problem2_EulerAnglesPlot2.jpg");
 %% Functions
 function matrixTilda = skewSymmetric(vec)
 % This function inputs a vector and returns a skew symmetrix matrix

@@ -84,6 +84,8 @@ B2 = sqrt(0.25*(1+2*C(2,2)-trace(C)));
 B3 = sqrt(0.25*(1+2*C(3,3)-trace(C)));
 BetaVec = [B0; B1; B2; B3];
 
+% This part of Sheppard's algorithm leads to sum(B_i ^2) < 1 ???
+%{
 biggestB = max(BetaVec);
 
 % Equation 3.96
@@ -102,11 +104,11 @@ elseif (B2 == biggestB)
     BetaVec(1) = 0.25*(C(1,2)+C(2,1))/B2;
     BetaVec(3) = 0.25*(C(2,3)+C(3,2))/B2;
     return;
-else
+elseif (B3 == biggestB)
     BetaVec(0) = 0.25*(C(1,2)-C(2,1))/B3;
     BetaVec(1) = 0.25*(C(3,1)+C(1,3))/B3;
     BetaVec(2) = 0.25*(C(2,3)+C(3,2))/B3;
     return;
 end
-
+%}
 end
