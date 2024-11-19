@@ -6,9 +6,9 @@ clear
 
 %% Import Data
 T = readtable('SensorData.csv');
-wx = T.wx;
-wy = T.wy;
-wz = T.wz;
+wx = T.wx; % Roll rate
+wy = T.wy; % Pitch rate
+wz = T.wz; % Yaw rate
 % Step 1: Convert the time strings into datetime format
 timeData = datetime(T.time, 'InputFormat', 'yyyy-MM-dd''T''HH:mm:ss.SSS''Z''',...
 'TimeZone', 'UTC');
@@ -19,8 +19,8 @@ t = seconds(timeDifferences);
 
 % Given euler angle rotations
 theta1 = 30; % yaw
-theta2 = 30; % pitch
-theta3 = 20; % theta3l
+theta2 = 70; % pitch
+theta3 = 20; % roll
 % DCM rotation based on a 3-2-1 rotation
 C_BN_original = [cosd(theta2)*cosd(theta1), cosd(theta2)*sind(theta1), -sind(theta2);
         sind(theta3)*sind(theta2)*cosd(theta1)-cosd(theta3)*sind(theta1), sind(theta3)*sind(theta2)*sind(theta1)+cosd(theta3)*cosd(theta1), sind(theta3)*cosd(theta2);
@@ -71,12 +71,35 @@ end
 figure(1)
 hold on
 plot(t(1:length(t)-1), error_hist, LineWidth=2)
-title('Magnitude of the error' )
+title('Time History of the Error' )
 xlabel("Time (s)")
 ylabel("Error magnitude")
 hold off
 exportgraphics(gca,"HW4_Problem2_ErrorPlot.jpg");
 
+%% Yaw-Pitch-Roll vs Time
+% Getting Euler Angle values
+angleHistory = zeros(length(t)-1, 3);
+for i = 1:length(t)-1
+    theta1 = theta1 + (wz(i)*( t(i+1)-t(i)));
+    theta2 = theta2 + (wy(i)*( t(i+1)-t(i)));
+    theta3 = theta3 + (wx(i)*( t(i+1)-t(i)));
+    
+    angleHistory(i,:) = [theta1, theta2, theta3]; % Saves yaw, pitch, and roll at this time step
+end
+
+% Plotting values
+figure(2)
+hold on
+plot(t(1:length(t)-1), angleHistory(:,1), LineWidth=2)
+plot(t(1:length(t)-1), angleHistory(:,2), LineWidth=2)
+plot(t(1:length(t)-1), angleHistory(:,3), LineWidth=2)
+legend('Yaw', 'Pitch', 'Roll')
+title('Evolution of Yaw, Pitch, and Roll over Time' )
+xlabel("Time (s)")
+ylabel("Angle (degrees)")
+hold off
+exportgraphics(gca,"HW4_Problem2_EulerAnglesPlot.jpg");
 %% Functions
 function matrixTilda = skewSymmetric(vec)
 % This function inputs a vector and returns a skew symmetrix matrix
