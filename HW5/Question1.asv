@@ -15,6 +15,25 @@ imshow(binaryImg)
 stats = regionprops(binaryImg, 'Centroid');
 centroids = cat(1, stats.Centroid); %Extract x and y pixel coordinates
 
-Star3 = 
-Star4 = [59.5000, 93.5000];
-Star5 = [156.5000, 101.5000];
+% Step 4 : Comparing extracted coords to manually-obtained coords
+Star1 = [86,19];
+Star2 = [150,14];
+Star3 = [10,114];
+Star4 = [60,93];
+Star5 = [150,101];
+starCoords = [Star1; Star2; Star3; Star4; Star5];
+
+Cents = NaN(length(starCoords),2);
+for i=1:size(starCoords)
+    [M,I] = min(((centroids(:,1)-starCoords(i,1)).^2 + (centroids(:,2)-starCoords(i,2)).^2).^(0.5));
+    Cents(i,:) = centroids(I,:); % Saves new centroid coordinates
+end
+
+% Step 5: Verifying coordinates
+imshow("StarField.png")
+hold on
+plot(centroids(:,1),centroids(:,2),'.r')
+hold on
+plot(Cents(:,1),Cents(:,2),'og')
+
+% Step 6: 
