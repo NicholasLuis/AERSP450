@@ -21,7 +21,7 @@ t = seconds(timeDifferences);
 
 % Given euler angle rotations
 theta1 = 30; % yaw
-theta2 = 70; % pitch
+theta2 = 30; % pitch
 theta3 = 20; % theta3l
 
 % DCM rotation based on a 3-2-1 rotation
@@ -39,7 +39,7 @@ figure(1)
 hold on
 plot(t, wx, LineWidth=2)
 plot(t, wy, LineWidth=2)
-plot(t, wz, LineWidth=2)
+plot(t, wz, LineWidth=2) % Only plotting half of the transfer orbit
 xlabel("Time (s)")
 ylabel("Angular Velocity (deg / s)")
 legend('wx', 'wy', 'wz')
@@ -84,8 +84,6 @@ B2 = sqrt(0.25*(1+2*C(2,2)-trace(C)));
 B3 = sqrt(0.25*(1+2*C(3,3)-trace(C)));
 BetaVec = [B0; B1; B2; B3];
 
-% This part of Sheppard's algorithm leads to sum(B_i ^2) < 1 ???
-%{
 biggestB = max(BetaVec);
 
 % Equation 3.96
@@ -104,11 +102,11 @@ elseif (B2 == biggestB)
     BetaVec(1) = 0.25*(C(1,2)+C(2,1))/B2;
     BetaVec(3) = 0.25*(C(2,3)+C(3,2))/B2;
     return;
-elseif (B3 == biggestB)
+else
     BetaVec(0) = 0.25*(C(1,2)-C(2,1))/B3;
     BetaVec(1) = 0.25*(C(3,1)+C(1,3))/B3;
     BetaVec(2) = 0.25*(C(2,3)+C(3,2))/B3;
     return;
 end
-%}
+
 end
