@@ -1,4 +1,4 @@
-% AERSP 450 HW5 - Question 1 
+% AERSP 450 HW5 - Question I 
 % Made by Nicholas Luis (PSU ID: 930841391)
 % Remove semi-colons to see the output
 
